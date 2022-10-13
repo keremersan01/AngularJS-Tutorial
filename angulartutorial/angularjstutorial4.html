@@ -1,1 +1,62 @@
+<!DOCTYPE html>
+<html ng-app = "app4">
+<head>
+    <title>AngularJS Tutorial 4</title>
+    <style>
+    [ng\:cloak], [ng-cloak], .ng-cloak {
+      display: none;
+    }
+    .bluetext {
+      color:blue;
+    }
+    .boldtext {
+      font-weight: bold;
+    }
+    .stripedblue {
+      color:#007FFF;
+      background-color:#DBE9F4;
+    }
+    .stripedbeige {
+      color:#CC0000;
+      background-color:#F5F5DC;
+    }
+    </style>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+    <script src = "js/exam4.js"></script>
+</head>
+<body>
+    <!-- There are bunch of events & their use of angularjs.
+    Such as click, copy, paste, cut, blur, etc. -->
+    <div ng-controller = "eventCtrl">
+        <input type="text" ng-blur = "blur = blur + 1">
+        <h4>Blur Events : {{blur}}</h4>
+    </div>
+    <div ng-controller = "ctrl1">
+        <button ng-disabled = "disableButton">Button</button><br>
+        <input type="checkbox" ng-model = "disableButton">
+        <span>Click Checkbox for enabling/disabling button</span><br>
+
+        <input type="checkbox" ng-model = "dayTimeButton">
+        <span>Morning</span>
+        <p ng-hide = "!dayTimeButton">Good Evening</p>
+        <p ng-hide = "dayTimeButton">Good Morning</p>
+
+        <select ng-model="textStyling">
+            <option value="bluetext">Blue Text</option>
+            <option value="boldtext">Bold Text</option>
+        </select>
+        <p ng-class = "textStyling">Some Random Text</p>
+        <br>
+
+        <table>
+            <tr ng-repeat = "item in cities"
+            ng-class-odd = "'stripedbeige'"
+            ng-class-event = "'stripedblue'">
+                <td>{{item.City}}</td>
+                <td>{{item.Code}}</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>

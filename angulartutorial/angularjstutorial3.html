@@ -1,1 +1,49 @@
+<!DOCTYPE html>
+<html ng-app = "app3" ng-cloak>
+<head>
+    <title>AngularJS Tutorial 3</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.3/angular.min.js"></script>
+    <script src = "js/exam3.js"></script>
+</head>
+<body>
+    <div id= "groceryList" ng-controller = "gListCtrl">
+        <h4>{{groceries.length}} Groceries to Get</h4>
 
+        <ol style = "margin: 0 0 -15px 0">
+            <li>{{groceries[0].item}}</li>
+        </ol>
+        <ol start = "2">
+            <li ng-repeat = "grocery in groceries" ng-if = "$index > 0">
+                {{grocery.item}} {{$index}}
+            </li>
+        </ol>
+
+        <table>
+            <tr ng-repeat-start = "grocery in groceries">
+                <td>{{grocery.item}}</td>
+            </tr>
+            <tr ng-repeat-end = "grocery in groceries">
+                <td>{{grocery.purchased}}</td>
+            </tr>
+        </table>
+
+        <label>Change 1st item: </label><br>
+        <input type="text" ng-model="groceries[0].item">
+
+        <h3>Grocery List</h3>
+        <div ng-include = "'groceryList.html'"></div>
+        <label>Show Unordered List</label>
+        <input type="checkbox" ng-model="showList">
+        <ng-include src="getList()"></ng-include>
+        
+        <input type="text" ng-model= "someNumber">
+        <div ng-switch="someNumber">
+            <p ng-switch-when = "1">You entered 1</p>
+            <p ng-switch-when = "2">You entered 2</p>
+            <p ng-switch-when = "3">You entered 3</p>
+            <p ng-switch-when = "4">You entered 4</p>
+            <p ng-switch-default = "1">Please enter a number between 1-4</p>
+        </div>
+    </div>
+</body>
+</html>
